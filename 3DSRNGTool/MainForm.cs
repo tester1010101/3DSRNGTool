@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Drawing;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Pk3DSRNGTool.Controls;
-using Pk3DSRNGTool.RNG;
 using Pk3DSRNGTool.Core;
+using Pk3DSRNGTool.RNG;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static Pk3DSRNGTool.FormUtil;
 using static Pk3DSRNGTool.StringItem;
 
@@ -63,6 +64,154 @@ namespace Pk3DSRNGTool
         {
             InitializeComponent();
         }
+
+        #region Initialization
+
+        private System.Windows.Forms.Timer guiTimer;
+        private string seedPath = "";
+        private int counterSeed = 0;
+        private int counterPre = 0;
+        private int counterTry = 0;
+        private int counter = 0;
+        private bool cond1 = false;
+        private bool cond2 = false;
+
+        #endregion
+
+        #region Functions
+
+        private void GuiTimer_Tick(object sender, EventArgs e)
+        {
+            counter++;
+            testNewSeed();
+        }
+
+        private void StartCounter()
+        {
+            guiTimer = new System.Windows.Forms.Timer();
+            guiTimer.Interval = 1000;
+            guiTimer.Tick += GuiTimer_Tick;
+            guiTimer.Start();
+        }
+
+        private void CounterP1Seed()
+        {
+            counterSeed++;
+        }
+
+        private void CounterP1Try()
+        {
+            counterTry++;
+        }
+
+        private void CounterP1Pre()
+        {
+            counterPre++;
+        }
+
+        private void setOldSeed()
+        {
+            string[] list0;
+            try
+            {
+                list0 = System.IO.File.ReadAllLines(seedPath);
+                cond1 = true;
+
+                string oldSeedVar = list0[0].ToString();
+                toolTip1.SetToolTip(Seed, $"{oldSeedVar}");
+            }
+            catch (global::System.IO.IOException)
+            {
+                counterTry++;
+                cond1 = false;
+
+                if (counterTry > 5)
+                {
+                    CounterP1Try();
+                    throw;
+                }
+            }
+        }
+
+        private void setNewSeed()
+        {
+            string[] list1;
+            try
+            {
+                list1 = System.IO.File.ReadAllLines(seedPath);
+                cond1 = true;
+
+                string newSeedVar = list1[0].ToString();
+                Seed.Text = $"{newSeedVar}";
+            }
+            catch (global::System.IO.IOException)
+            {
+                counterTry++;
+                cond1 = false;
+
+                if (counterTry < 5)
+                {
+                    CounterP1Try();
+                    throw;
+                }
+            }
+        }
+
+        private void getSeedPath()
+        {
+            string file;
+            try
+            {
+                OpenFileDialog OFD = new OpenFileDialog();
+                DialogResult result = OFD.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    seedPath = OFD.FileName;
+                    file = seedPath;
+
+                    if (System.IO.File.Exists(file))
+                    {
+                        string[] list0 = System.IO.File.ReadAllLines(file);
+                        string list = list0[0].ToString();
+                        Seed.Text = list;
+                    }
+                }
+            }
+            catch
+            {
+                Seed.Text = "ER_RETRY";
+                MessageBox.Show("ERROR: Retry with working seedFile [sdmc/t5.txt => 00FF00FF]");
+            }
+        }
+
+        private void getSeedCHGON()
+        {
+            setNewSeed();
+            if (Seed.Text == toolTip1.GetToolTip(this.Seed))
+            {
+                cond2 = true;
+            }
+            else
+            {
+                cond2 = false;
+            }
+        }
+
+        private void testNewSeed()
+        {
+            getSeedCHGON();
+
+            if (cond2 == false)
+            {
+                setOldSeed();
+                setNewSeed();
+
+                // Thanks to GeminiAI for answer
+                B_Calc.PerformClick();
+            }
+        }
+
+        #endregion
 
         #region Form Loading
         private void MainForm_Load(object sender, EventArgs e)
@@ -2078,5 +2227,28 @@ namespace Pk3DSRNGTool
             => miscrngtool.Show();
         #endregion
 
+        #region Automation
+
+        private void B_ATMSW_Click(object sender, EventArgs e)
+        {
+            if (B_ATMSW.BackColor == Color.Lime)
+            {
+                B_ATMSW.BackColor = Color.Red; // Yellow / Starting.State
+                MessageBox.Show("Starting, press STOP to stop");
+                toolTip1.SetToolTip(B_ATMSW, "TEXT=RED");
+                getSeedPath();
+                StartCounter();
+            }
+            else
+            {
+                if (B_ATMSW.BackColor == Color.Red)
+                {
+                    B_ATMSW.BackColor = Color.Lime;
+                    MessageBox.Show("TESTING, press key to continue");
+                    toolTip1.SetToolTip(B_ATMSW, "TEXT=GREEN");
+                }
+            }
+        }
+        #endregion
     }
 }
