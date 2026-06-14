@@ -562,7 +562,7 @@
             // 
             Advanced.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             Advanced.AutoSize = true;
-            Advanced.Location = new System.Drawing.Point(1191, 17);
+            Advanced.Location = new System.Drawing.Point(1244, 17);
             Advanced.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             Advanced.Name = "Advanced";
             Advanced.Size = new System.Drawing.Size(75, 19);
@@ -575,7 +575,7 @@
             // 
             ShinyCharm.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             ShinyCharm.AutoSize = true;
-            ShinyCharm.Location = new System.Drawing.Point(1102, 17);
+            ShinyCharm.Location = new System.Drawing.Point(1155, 17);
             ShinyCharm.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             ShinyCharm.Name = "ShinyCharm";
             ShinyCharm.Size = new System.Drawing.Size(76, 19);
@@ -588,7 +588,7 @@
             // 
             L_TSV.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             L_TSV.AutoSize = true;
-            L_TSV.Location = new System.Drawing.Point(915, 20);
+            L_TSV.Location = new System.Drawing.Point(968, 20);
             L_TSV.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             L_TSV.Name = "L_TSV";
             L_TSV.Size = new System.Drawing.Size(27, 15);
@@ -599,7 +599,7 @@
             // 
             L_Seed.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             L_Seed.AutoSize = true;
-            L_Seed.Location = new System.Drawing.Point(796, 20);
+            L_Seed.Location = new System.Drawing.Point(849, 20);
             L_Seed.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             L_Seed.Name = "L_Seed";
             L_Seed.Size = new System.Drawing.Size(32, 15);
@@ -610,7 +610,7 @@
             // 
             TSV.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             TSV.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            TSV.Location = new System.Drawing.Point(950, 14);
+            TSV.Location = new System.Drawing.Point(1003, 14);
             TSV.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             TSV.Maximum = new decimal(new int[] { 4095, 0, 0, 0 });
             TSV.Name = "TSV";
@@ -623,6 +623,7 @@
             DGV.AllowDrop = true;
             DGV.AllowUserToAddRows = false;
             DGV.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            DGV.BackgroundColor = System.Drawing.Color.Aquamarine;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
@@ -642,7 +643,7 @@
             dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             DGV.DefaultCellStyle = dataGridViewCellStyle14;
-            DGV.Location = new System.Drawing.Point(14, 392);
+            DGV.Location = new System.Drawing.Point(18, 392);
             DGV.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             DGV.Name = "DGV";
             dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -658,7 +659,7 @@
             DGV.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             DGV.RowTemplate.Height = 21;
             DGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            DGV.Size = new System.Drawing.Size(1261, 305);
+            DGV.Size = new System.Drawing.Size(1305, 290);
             DGV.TabIndex = 89;
             DGV.VirtualMode = true;
             DGV.CellMouseEnter += DGV_CellMouseEnter;
@@ -993,7 +994,7 @@
             Gameversion.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             Gameversion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             Gameversion.Items.AddRange(new object[] { "X", "Y", "OR", "AS", "Transporter", "Sun", "Moon", "Ultra Sun", "Ultra Moon" });
-            Gameversion.Location = new System.Drawing.Point(701, 15);
+            Gameversion.Location = new System.Drawing.Point(754, 15);
             Gameversion.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             Gameversion.Name = "Gameversion";
             Gameversion.Size = new System.Drawing.Size(90, 23);
@@ -1004,7 +1005,7 @@
             // 
             L_GameVersion.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             L_GameVersion.AutoSize = true;
-            L_GameVersion.Location = new System.Drawing.Point(616, 20);
+            L_GameVersion.Location = new System.Drawing.Point(669, 20);
             L_GameVersion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             L_GameVersion.Name = "L_GameVersion";
             L_GameVersion.Size = new System.Drawing.Size(56, 15);
@@ -1017,15 +1018,17 @@
             DGV_ID.AllowUserToAddRows = false;
             DGV_ID.AllowUserToResizeRows = false;
             DGV_ID.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            DGV_ID.BackgroundColor = System.Drawing.Color.MediumSeaGreen;
             DGV_ID.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             DGV_ID.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { dgv_IDframe, dgv_gen7ID, dgv_TID, dgv_SID, dgv_TSV, dgv_TRV, dgv_clock, dgv_ID_rand, dgv_ID_rand64, dgv_ID_state });
-            DGV_ID.Location = new System.Drawing.Point(14, 392);
+            DGV_ID.GridColor = System.Drawing.Color.IndianRed;
+            DGV_ID.Location = new System.Drawing.Point(18, 392);
             DGV_ID.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             DGV_ID.Name = "DGV_ID";
             DGV_ID.RowHeadersWidth = 18;
             DGV_ID.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             DGV_ID.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            DGV_ID.Size = new System.Drawing.Size(1261, 305);
+            DGV_ID.Size = new System.Drawing.Size(1305, 290);
             DGV_ID.TabIndex = 92;
             DGV_ID.VirtualMode = true;
             DGV_ID.DragDrop += DragDropWC;
@@ -1233,6 +1236,7 @@
             // 
             // TP_IDRNG
             // 
+            TP_IDRNG.BackColor = System.Drawing.Color.Orchid;
             TP_IDRNG.Controls.Add(GB_RNGGEN7ID);
             TP_IDRNG.Controls.Add(RNGPanel);
             TP_IDRNG.Controls.Add(Filter_ID);
@@ -1240,13 +1244,13 @@
             TP_IDRNG.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             TP_IDRNG.Name = "TP_IDRNG";
             TP_IDRNG.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            TP_IDRNG.Size = new System.Drawing.Size(1256, 623);
+            TP_IDRNG.Size = new System.Drawing.Size(1305, 620);
             TP_IDRNG.TabIndex = 4;
             TP_IDRNG.Text = "ID乱数";
-            TP_IDRNG.UseVisualStyleBackColor = true;
             // 
             // GB_RNGGEN7ID
             // 
+            GB_RNGGEN7ID.BackColor = System.Drawing.Color.Chocolate;
             GB_RNGGEN7ID.Controls.Add(Clk_Correction);
             GB_RNGGEN7ID.Controls.Add(L_ClkCorrection);
             GB_RNGGEN7ID.Location = new System.Drawing.Point(7, 223);
@@ -1280,6 +1284,7 @@
             // 
             // RNGPanel
             // 
+            RNGPanel.BackColor = System.Drawing.Color.Chocolate;
             RNGPanel.Controls.Add(B_GetTiny);
             RNGPanel.Controls.Add(label23);
             RNGPanel.Controls.Add(ID_Tiny2);
@@ -1408,6 +1413,7 @@
             // 
             // Filter_ID
             // 
+            Filter_ID.BackColor = System.Drawing.Color.Chocolate;
             Filter_ID.Controls.Add(Filter_FullID);
             Filter_ID.Controls.Add(Filter_TID);
             Filter_ID.Controls.Add(Filter_G7TID);
@@ -1553,18 +1559,19 @@
             // 
             // TP_EggRNG
             // 
+            TP_EggRNG.BackColor = System.Drawing.Color.Lime;
             TP_EggRNG.Controls.Add(Parents_Info);
             TP_EggRNG.Location = new System.Drawing.Point(4, 24);
             TP_EggRNG.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             TP_EggRNG.Name = "TP_EggRNG";
             TP_EggRNG.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            TP_EggRNG.Size = new System.Drawing.Size(1256, 623);
+            TP_EggRNG.Size = new System.Drawing.Size(1305, 620);
             TP_EggRNG.TabIndex = 3;
             TP_EggRNG.Text = "孵化乱数";
-            TP_EggRNG.UseVisualStyleBackColor = true;
             // 
             // Parents_Info
             // 
+            Parents_Info.BackColor = System.Drawing.Color.Chocolate;
             Parents_Info.Controls.Add(GB_EggSeed);
             Parents_Info.Controls.Add(B_Template);
             Parents_Info.Controls.Add(NidoType);
@@ -2252,18 +2259,19 @@
             // 
             // TP_WildRNG
             // 
+            TP_WildRNG.BackColor = System.Drawing.Color.Lime;
             TP_WildRNG.Controls.Add(Wild_Setting);
             TP_WildRNG.Location = new System.Drawing.Point(4, 24);
             TP_WildRNG.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             TP_WildRNG.Name = "TP_WildRNG";
             TP_WildRNG.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            TP_WildRNG.Size = new System.Drawing.Size(1256, 623);
+            TP_WildRNG.Size = new System.Drawing.Size(1305, 620);
             TP_WildRNG.TabIndex = 2;
             TP_WildRNG.Text = "野生乱数";
-            TP_WildRNG.UseVisualStyleBackColor = true;
             // 
             // Wild_Setting
             // 
+            Wild_Setting.BackColor = System.Drawing.Color.Chocolate;
             Wild_Setting.Controls.Add(L_Potential);
             Wild_Setting.Controls.Add(Potential);
             Wild_Setting.Controls.Add(L_HA);
@@ -2806,18 +2814,19 @@
             // 
             // TP_EventRNG
             // 
+            TP_EventRNG.BackColor = System.Drawing.Color.Lime;
             TP_EventRNG.Controls.Add(EventSetting);
             TP_EventRNG.Location = new System.Drawing.Point(4, 24);
             TP_EventRNG.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             TP_EventRNG.Name = "TP_EventRNG";
             TP_EventRNG.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            TP_EventRNG.Size = new System.Drawing.Size(1256, 623);
+            TP_EventRNG.Size = new System.Drawing.Size(1305, 620);
             TP_EventRNG.TabIndex = 1;
             TP_EventRNG.Text = "配信乱数";
-            TP_EventRNG.UseVisualStyleBackColor = true;
             // 
             // EventSetting
             // 
+            EventSetting.BackColor = System.Drawing.Color.Chocolate;
             EventSetting.Controls.Add(EventIV0);
             EventSetting.Controls.Add(EventIV1);
             EventSetting.Controls.Add(EventIV2);
@@ -3316,6 +3325,7 @@
             // 
             // TP_StationaryRNG
             // 
+            TP_StationaryRNG.BackColor = System.Drawing.Color.Turquoise;
             TP_StationaryRNG.Controls.Add(RNGInfo);
             TP_StationaryRNG.Controls.Add(Sta_Setting);
             TP_StationaryRNG.Controls.Add(Filters);
@@ -3323,13 +3333,13 @@
             TP_StationaryRNG.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             TP_StationaryRNG.Name = "TP_StationaryRNG";
             TP_StationaryRNG.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            TP_StationaryRNG.Size = new System.Drawing.Size(1256, 623);
+            TP_StationaryRNG.Size = new System.Drawing.Size(1305, 620);
             TP_StationaryRNG.TabIndex = 0;
             TP_StationaryRNG.Text = "定点乱数";
-            TP_StationaryRNG.UseVisualStyleBackColor = true;
             // 
             // RNGInfo
             // 
+            RNGInfo.BackColor = System.Drawing.Color.Lime;
             RNGInfo.Controls.Add(LeapRangePanel);
             RNGInfo.Controls.Add(RB_TimelineLeap);
             RNGInfo.Controls.Add(Tip);
@@ -3806,6 +3816,7 @@
             // 
             // Sta_Setting
             // 
+            Sta_Setting.BackColor = System.Drawing.Color.Chocolate;
             Sta_Setting.Controls.Add(FidgetPanel);
             Sta_Setting.Controls.Add(ShinyMark);
             Sta_Setting.Controls.Add(AssumeSynced);
@@ -4138,6 +4149,7 @@
             // 
             // Filters
             // 
+            Filters.BackColor = System.Drawing.Color.Yellow;
             Filters.Controls.Add(SquareShinyOnly);
             Filters.Controls.Add(ShinyRemind);
             Filters.Controls.Add(Filter_Lv);
@@ -5029,7 +5041,7 @@
             RNGMethod.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             RNGMethod.Name = "RNGMethod";
             RNGMethod.SelectedIndex = 0;
-            RNGMethod.Size = new System.Drawing.Size(1264, 651);
+            RNGMethod.Size = new System.Drawing.Size(1313, 648);
             RNGMethod.TabIndex = 5;
             RNGMethod.SelectedIndexChanged += RNGMethod_Changed;
             RNGMethod.DragDrop += DragDropWC;
@@ -5040,7 +5052,7 @@
             CB_Profile.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             CB_Profile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             CB_Profile.Items.AddRange(new object[] { "X", "Y", "OR", "AS", "Transporter", "Sun", "Moon", "Ultra Sun", "Ultra Moon" });
-            CB_Profile.Location = new System.Drawing.Point(474, 15);
+            CB_Profile.Location = new System.Drawing.Point(527, 15);
             CB_Profile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             CB_Profile.Name = "CB_Profile";
             CB_Profile.Size = new System.Drawing.Size(101, 23);
@@ -5050,7 +5062,7 @@
             // L_Profile
             // 
             L_Profile.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            L_Profile.Location = new System.Drawing.Point(392, 18);
+            L_Profile.Location = new System.Drawing.Point(445, 18);
             L_Profile.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             L_Profile.Name = "L_Profile";
             L_Profile.Size = new System.Drawing.Size(75, 17);
@@ -5061,7 +5073,7 @@
             // B_AddProfile
             // 
             B_AddProfile.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            B_AddProfile.Location = new System.Drawing.Point(586, 15);
+            B_AddProfile.Location = new System.Drawing.Point(639, 15);
             B_AddProfile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             B_AddProfile.Name = "B_AddProfile";
             B_AddProfile.Size = new System.Drawing.Size(23, 24);
@@ -5074,7 +5086,7 @@
             // 
             L_TRV.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             L_TRV.AutoSize = true;
-            L_TRV.Location = new System.Drawing.Point(1020, 20);
+            L_TRV.Location = new System.Drawing.Point(1073, 20);
             L_TRV.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             L_TRV.Name = "L_TRV";
             L_TRV.Size = new System.Drawing.Size(28, 15);
@@ -5085,7 +5097,7 @@
             // 
             TRV.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             TRV.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            TRV.Location = new System.Drawing.Point(1057, 14);
+            TRV.Location = new System.Drawing.Point(1110, 14);
             TRV.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             TRV.Mask = "A";
             TRV.Name = "TRV";
@@ -5100,7 +5112,7 @@
             // 
             Seed.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             Seed.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            Seed.Location = new System.Drawing.Point(833, 14);
+            Seed.Location = new System.Drawing.Point(886, 14);
             Seed.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             Seed.Mask = "AAAAAAAA";
             Seed.Name = "Seed";
@@ -5115,11 +5127,11 @@
             // B_ATMSW
             // 
             B_ATMSW.BackColor = System.Drawing.Color.Lime;
-            B_ATMSW.Location = new System.Drawing.Point(294, 9);
+            B_ATMSW.Location = new System.Drawing.Point(165, 6);
             B_ATMSW.Name = "B_ATMSW";
-            B_ATMSW.Size = new System.Drawing.Size(75, 23);
+            B_ATMSW.Size = new System.Drawing.Size(283, 29);
             B_ATMSW.TabIndex = 99;
-            B_ATMSW.Text = "button1";
+            B_ATMSW.Text = "Browse seed file";
             B_ATMSW.UseVisualStyleBackColor = false;
             B_ATMSW.Click += B_ATMSW_Click;
             // 
@@ -5127,7 +5139,8 @@
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1288, 706);
+            BackColor = System.Drawing.Color.RoyalBlue;
+            ClientSize = new System.Drawing.Size(1341, 703);
             Controls.Add(B_ATMSW);
             Controls.Add(TRV);
             Controls.Add(L_TRV);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -67,31 +68,274 @@ namespace Pk3DSRNGTool
 
         #region Initialization
 
+        /* 
+         * > Only works for Gen7 (USUM)
+         * > Only works for static/event shinies (ID/Wild and other functions not tested, may be working tho)
+         * > Only press when seed change event is fired (SeedCHGON)
+         */
+
         private System.Windows.Forms.Timer guiTimer;
+        private System.Windows.Forms.Timer guiTimer2;
+        private string item2 = "";
         private string seedPath = "";
+        private string oldSeedVar = "";
+        private string newSeedVar = "";
+        private string ctrstr = "";
+        private string ctrstr2 = "";
+        private string ctrstr3 = "";
+        private string ctrstr4 = "";
+        private bool cond1 = false;
+        private bool cond2 = false;
         private int counterSeed = 0;
         private int counterPre = 0;
         private int counterTry = 0;
+        private int counter2 = 0;
         private int counter = 0;
-        private bool cond1 = false;
-        private bool cond2 = false;
+        private int cts = 0;
+        private int ctm = 0;
+        private int cth = 0;
+        private int timeh = 0;
+        private int timem = 0;
+        private int times = 0;
+        private int timed = 0;
+        public string[] colorCollec =
+            {
+                "YellowGreen",
+                "AliceBlue",
+                "AntiqueWhite",
+                "Aqua",
+                "Aquamarine",
+                "Azure",
+                "Beige",
+                "Bisque",
+                "Black",
+                "BlanchedAlmond",
+                "Blue",
+                "BlueViolet",
+                "Brown",
+                "BurlyWood",
+                "CadetBlue",
+                "Chartreuse",
+                "Chocolate",
+                "Coral",
+                "CornflowerBlue",
+                "Cornsilk",
+                "Crimson",
+                "Cyan",
+                "DarkBlue",
+                "DarkCyan",
+                "DarkGoldenrod",
+                "DarkGray",
+                "DarkGreen",
+                "DarkKhaki",
+                "DarkMagenta",
+                "DarkOliveGreen",
+                "DarkOrange",
+                "DarkOrchid",
+                "DarkRed",
+                "DarkSalmon",
+                "DarkSeaGreen",
+                "DarkSlateBlue",
+                "DarkSlateGray",
+                "DarkTurquoise",
+                "DarkViolet",
+                "DeepPink",
+                "DeepSkyBlue",
+                "DimGray",
+                "DodgerBlue",
+                "Firebrick",
+                "FloralWhite",
+                "ForestGreen",
+                "Fuchsia",
+                "Gainsboro",
+                "GhostWhite",
+                "Gold",
+                "Goldenrod",
+                "Gray",
+                "Green",
+                "GreenYellow",
+                "Honeydew",
+                "HotPink",
+                "IndianRed",
+                "Indigo",
+                "Ivory",
+                "Khaki",
+                "Lavender",
+                "LavenderBlush",
+                "LawnGreen",
+                "LemonChiffon",
+                "LightBlue",
+                "LightCoral",
+                "LightCyan",
+                "LightGoldenrodYellow",
+                "LightGray",
+                "LightGreen",
+                "LightPink",
+                "LightSalmon",
+                "LightSeaGreen",
+                "LightSkyBlue",
+                "LightSlateGray",
+                "LightSteelBlue",
+                "LightYellow",
+                "Lime",
+                "LimeGreen",
+                "Linen",
+                "Magenta",
+                "Maroon",
+                "MediumAquamarine",
+                "MediumBlue",
+                "MediumOrchid",
+                "MediumPurple",
+                "MediumSeaGreen",
+                "MediumSlateBlue",
+                "MediumSpringGreen",
+                "MediumTurquoise",
+                "MediumVioletRed",
+                "MidnightBlue",
+                "MintCream",
+                "MistyRose",
+                "Moccasin",
+                "NavajoWhite",
+                "Navy",
+                "OldLace",
+                "Olive",
+                "OliveDrab",
+                "Orange",
+                "OrangeRed",
+                "Orchid",
+                "PaleGoldenrod",
+                "PaleGreen",
+                "PaleTurquoise",
+                "PaleVioletRed",
+                "PapayaWhip",
+                "PeachPuff",
+                "Peru",
+                "Pink",
+                "Plum",
+                "PowderBlue",
+                "Purple",
+                "Red",
+                "RosyBrown",
+                "RoyalBlue",
+                "SaddleBrown",
+                "Salmon",
+                "SandyBrown",
+                "SeaGreen",
+                "SeaShell",
+                "Sienna",
+                "Silver",
+                "SkyBlue",
+                "SlateBlue",
+                "SlateGray",
+                "Snow",
+                "SpringGreen",
+                "SteelBlue",
+                "Tan",
+                "Teal",
+                "Thistle",
+                "Tomato",
+                "Transparent",
+                "Turquoise",
+                "Violet",
+                "Wheat",
+                "White",
+                "WhiteSmoke",
+                "Yellow"
+            };
 
         #endregion
 
         #region Functions
 
-        private void GuiTimer_Tick(object sender, EventArgs e)
+        private void getTimeFn()
+        {
+            times = cts;
+            //timem = ctm;
+            //timeh = cth;
+            if ((times / 60) == (timem + 1))
+            {
+                timem++;
+                times = 1;
+                cts = 1;
+                ctm = timem;
+            }
+
+            if ((timem / 60) == (timeh + 1))
+            {
+                timeh++;
+                timem = 1;
+                ctm = 1;
+                cth = timeh;
+            }
+
+            if ((timeh / 24) == (timed + 1))
+            {
+                timed++;
+                timeh = 1;
+                cth = 1;
+            }
+
+        }
+
+        private void GuiTimer_Tick(object sender, EventArgs e) // testSeed - s (second)
         {
             counter++;
+            cts++;
+            getTimeFn();
             testNewSeed();
+            B_ATMSW.Text = $"RS:{counterSeed}CT:{counter}CTS:{cts}RT:{timed}:{timeh}:{timem}:{times}";
+        }
+
+        private void GuiTimer_Tick2(object sender, EventArgs e) // flash fn ticker - ms (milliseconds)
+        {
+            colorFn();
+            if (counter2 == 120)
+            {
+                counter2 = 0;
+            }
+            counter2++;
+        }
+
+        private void colorFn()
+        {
+            EventSetting.BackColor = Color.FromName(colorCollec[0+counter2]);
+            Filter_ID.BackColor = Color.FromName(colorCollec[1+counter2]);
+            GB_RNGGEN7ID.BackColor = Color.FromName(colorCollec[2+counter2]);
+            Parents_Info.BackColor = Color.FromName(colorCollec[3+counter2]);
+            RNGPanel.BackColor = Color.FromName(colorCollec[4+counter2]);
+            Sta_Setting.BackColor = Color.FromName(colorCollec[5+counter2]);
+            Wild_Setting.BackColor = Color.FromName(colorCollec[6+counter2]);
+            DGV.BackgroundColor = Color.FromName(colorCollec[7+counter2]);
+            Filters.BackColor = Color.FromName(colorCollec[8+counter2]);
+            TP_StationaryRNG.BackColor = Color.FromName(colorCollec[9+counter2]);
+            DGV_ID.BackgroundColor = Color.FromName(colorCollec[10+counter2]);
+            RNGInfo.BackColor = Color.FromName(colorCollec[11+counter2]);
+            TP_EggRNG.BackColor = Color.FromName(colorCollec[12+counter2]);
+            TP_EventRNG.BackColor = Color.FromName(colorCollec[13+counter2]);
+            TP_WildRNG.BackColor = Color.FromName(colorCollec[14+counter2]);
+            B_ATMSW.BackColor = Color.FromName(colorCollec[15+counter2]);
         }
 
         private void StartCounter()
         {
             guiTimer = new System.Windows.Forms.Timer();
-            guiTimer.Interval = 1000;
+            guiTimer.Interval = 25;
             guiTimer.Tick += GuiTimer_Tick;
             guiTimer.Start();
+        }
+
+        private void StartCounter2()
+        {
+            guiTimer2 = new System.Windows.Forms.Timer();
+            guiTimer2.Interval = 100; // orig: 25
+            guiTimer2.Tick += GuiTimer_Tick2;
+            guiTimer2.Start();
+        }
+
+        private void StopCounters()
+        {
+            guiTimer.Stop();
+            guiTimer2.Stop();
         }
 
         private void CounterP1Seed()
@@ -104,11 +348,6 @@ namespace Pk3DSRNGTool
             counterTry++;
         }
 
-        private void CounterP1Pre()
-        {
-            counterPre++;
-        }
-
         private void setOldSeed()
         {
             string[] list0;
@@ -117,7 +356,7 @@ namespace Pk3DSRNGTool
                 list0 = System.IO.File.ReadAllLines(seedPath);
                 cond1 = true;
 
-                string oldSeedVar = list0[0].ToString();
+                oldSeedVar = list0[0].ToString();
                 toolTip1.SetToolTip(Seed, $"{oldSeedVar}");
             }
             catch (global::System.IO.IOException)
@@ -141,7 +380,7 @@ namespace Pk3DSRNGTool
                 list1 = System.IO.File.ReadAllLines(seedPath);
                 cond1 = true;
 
-                string newSeedVar = list1[0].ToString();
+                newSeedVar = list1[0].ToString();
                 Seed.Text = $"{newSeedVar}";
             }
             catch (global::System.IO.IOException)
@@ -173,6 +412,7 @@ namespace Pk3DSRNGTool
                     {
                         string[] list0 = System.IO.File.ReadAllLines(file);
                         string list = list0[0].ToString();
+                        oldSeedVar = list0[0].ToString();
                         Seed.Text = list;
                     }
                 }
@@ -187,7 +427,7 @@ namespace Pk3DSRNGTool
         private void getSeedCHGON()
         {
             setNewSeed();
-            if (Seed.Text == toolTip1.GetToolTip(this.Seed))
+            if (oldSeedVar == newSeedVar)
             {
                 cond2 = true;
             }
@@ -205,11 +445,16 @@ namespace Pk3DSRNGTool
             {
                 setOldSeed();
                 setNewSeed();
+                CounterP1Seed();
+                guiTimer.Stop();
 
-                // Thanks to GeminiAI for answer
+                // Many thanks to GeminiAI for answer(s)
                 B_Calc.PerformClick();
+                guiTimer.Start();
             }
         }
+
+
 
         #endregion
 
@@ -1784,7 +2029,8 @@ namespace Pk3DSRNGTool
                                 setting6.SlotLevel[i] = area.Level[i - 1];
                             }
                             break;
-                    };
+                    }
+                    ;
                 }
             }
 
@@ -2234,18 +2480,24 @@ namespace Pk3DSRNGTool
             if (B_ATMSW.BackColor == Color.Lime)
             {
                 B_ATMSW.BackColor = Color.Red; // Yellow / Starting.State
-                MessageBox.Show("Starting, press STOP to stop");
+                // MessageBox.Show("Starting, press STOP to stop");
                 toolTip1.SetToolTip(B_ATMSW, "TEXT=RED");
                 getSeedPath();
                 StartCounter();
+                StartCounter2();
+
+                //StartCounter3();
+                    // . _ > FLASHBUTTON();
             }
             else
             {
                 if (B_ATMSW.BackColor == Color.Red)
                 {
                     B_ATMSW.BackColor = Color.Lime;
-                    MessageBox.Show("TESTING, press key to continue");
-                    toolTip1.SetToolTip(B_ATMSW, "TEXT=GREEN");
+                    MessageBox.Show("TESTING, restart program to restart");
+                    toolTip1.SetToolTip(B_ATMSW, "TEXT=YELLOW");
+                    B_ATMSW.BackColor = Color.Yellow;
+                    StopCounters();
                 }
             }
         }
