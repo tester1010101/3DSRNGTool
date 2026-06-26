@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Drawing;
+using System.Reflection;
 using System.Linq;
 using System.Windows.Forms;
 using Pk3DSRNGTool.Controls;
 using Pk3DSRNGTool.Core;
 using Pk3DSRNGTool.RNG;
+using Pk3DSRNGTool.Subforms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static Pk3DSRNGTool.FormUtil;
 using static Pk3DSRNGTool.StringItem;
+using System.Runtime.InteropServices.Marshalling;
+using System.Windows.Forms.VisualStyles;
 
 namespace Pk3DSRNGTool
 {
@@ -59,6 +63,9 @@ namespace Pk3DSRNGTool
         List<Frame_ID> IDFrames = new List<Frame_ID>();
         List<int> OtherTSVList = new List<int>();
         public uint[] TinySeeds => TTT.Gen6Tiny;
+
+        List<Type> tp1 = new List<Type>();
+
         #endregion
 
         public MainForm()
@@ -73,32 +80,28 @@ namespace Pk3DSRNGTool
          * > Only works for static/event shinies (ID/Wild and other functions not tested, may be working tho)
          * > Only press when seed change event is fired (SeedCHGON)
          */
-
         private System.Windows.Forms.Timer guiTimer;
         private System.Windows.Forms.Timer guiTimer2;
-        private string item2 = "";
+        private System.Windows.Forms.Timer guiTimer3;
+        public List<Control> foundControls;
         private string seedPath = "";
         private string oldSeedVar = "";
         private string newSeedVar = "";
-        private string ctrstr = "";
-        private string ctrstr2 = "";
-        private string ctrstr3 = "";
-        private string ctrstr4 = "";
+        private bool startColor = false;
         private bool cond1 = false;
         private bool cond2 = false;
+        private int startInt = 0;
         private int counterSeed = 0;
-        private int counterPre = 0;
         private int counterTry = 0;
-        private int counter2 = 0;
         private int counter = 0;
-        private int cts = 0;
-        private int ctm = 0;
-        private int cth = 0;
+        private int counter2 = 1000;
+        private int counterMax = 0;
         private int timeh = 0;
         private int timem = 0;
         private int times = 0;
         private int timed = 0;
-        public string[] colorCollec =
+        private string[] collecChoice;
+        public string[] colorCollec0 =
             {
                 "YellowGreen",
                 "AliceBlue",
@@ -234,7 +237,6 @@ namespace Pk3DSRNGTool
                 "Teal",
                 "Thistle",
                 "Tomato",
-                "Transparent",
                 "Turquoise",
                 "Violet",
                 "Wheat",
@@ -242,100 +244,378 @@ namespace Pk3DSRNGTool
                 "WhiteSmoke",
                 "Yellow"
             };
+        public string[] colorCollec1 =
+        {
+                "Red",
+                "Blue",
+                "Yellow"
+        };
+        public string[] colorCollec2 =
+        {
+                "Gold",
+                "Gray",
+                "Cyan"
+        };
+        public string[] colorCollec3 =
+        {
+                "Blue",
+                "Red",
+                "Lime"
+        };
+        public string[] colorCollec4 =
+        {
+                "LightPink",
+                "Gray"
+        };
+        public string[] colorCollec5 =
+        {
+                "WhiteSmoke",
+                "Black"
+        };
+        public string[] colorCollec6 =
+        {
+                "Orange",
+                "Purple"
+        };
+        public string[] colorCollec7 =
+        {
+                "LimeGreen",
+                "AliceBlue",
+                "Firebrick",
+                "Violet",
+                "Aquamarine",
+                "Magenta",
+                "Indigo",
+                "Yellow"
+        };
+        public string[] panelCollection =
+        {
+            "EventSetting.BackColor = Color.FromName(collecChoice[counter]);",
+            "Filter_ID.BackColor = Color.FromName(collecChoice[counter]);",
+            "GB_RNGGEN7ID.BackColor = Color.FromName(collecChoice[counter]);",
+            "Parents_Info.BackColor = Color.FromName(collecChoice[counter]);",
+            "RNGPanel.BackColor = Color.FromName(collecChoice[counter]);",
+            "Sta_Setting.BackColor = Color.FromName(collecChoice[counter]);",
+            "Wild_Setting.BackColor = Color.FromName(collecChoice[counter]);",
+            "DGV.BackgroundColor = Color.FromName(collecChoice[counter]);",
+            "Filters.BackColor = Color.FromName(collecChoice[counter]);",
+            "TP_StationaryRNG.BackColor = Color.FromName(collecChoice[counter]);",
+            "DGV_ID.BackgroundColor = Color.FromName(collecChoice[counter]);",
+            "RNGInfo.BackColor = Color.FromName(collecChoice[counter]);",
+            "TP_EggRNG.BackColor = Color.FromName(collecChoice[counter]);",
+            "TP_EventRNG.BackColor = Color.FromName(collecChoice[counter]);",
+            "TP_WildRNG.BackColor = Color.FromName(collecChoice[counter]);"
+        };
+
+        public string[] panelCollection2 =
+        {
+            "EventSetting",
+            "Filter_ID",
+            "GB_RNGGEN7ID",
+            "Parents_Info",
+            "RNGPanel",
+            "Sta_Setting",
+            "Wild_Setting",
+            "DGV",
+            "Filters",
+            "TP_StationaryRNG",
+            "DGV_ID",
+            "RNGInfo",
+            "TP_EggRNG",
+            "TP_EventRNG",
+            "TP_WildRNG"
+        };
+
+        // "DGV_ID",
+        //"DGV",
+
+
+
+        public string[] tp0 =
+        {
+            "EventSetting",
+            "Filter_ID",
+            "GB_RNGGEN7ID",
+            "Parents_Info",
+            "RNGPanel",
+            "Sta_Setting",
+            "Wild_Setting",
+            "Filters",
+            "TP_StationaryRNG",
+            "RNGInfo",
+            "TP_EggRNG",
+            "TP_EventRNG",
+            "TP_WildRNG"
+        };
+
 
         #endregion
 
         #region Functions
 
+
+
+        private void GuiTimer_Tick(object sender, EventArgs e)
+        {
+            times++;
+            getTimeFn();
+            testNewSeed();
+            B_ATMSW.Text = $"D: {timed} / HOURS: 0{timeh} / MINS: 0{timem} / SECS: 0{times} | F5/6: {counterSeed}";// / SECS: {times}";
+        }
+
+        private void GuiTimer_Tick2(object sender, EventArgs e)
+        {
+            try
+            {
+                colorFn4(foundControls);
+            }
+            catch (System.NullReferenceException)
+            {
+                System.Threading.Tasks.Task.Run(() => { MessageBox.Show($"BUG//ctr: {counter} + foundCTRLs: {foundControls}"); });
+                throw;
+            }
+            counter++;
+        }
+
+        private void GuiTimer_Tick3(object sender, EventArgs e)
+        {
+
+            checkSet();
+
+        }
+
+        private List<Control> FindControlsByFields(Control container, string[] fieldNames)
+        {
+            List<Control> matches = new List<Control>();
+            foreach (Control ctrl in container.Controls)
+            {
+                if (ctrl.BackColor != Color.Empty)
+                {
+                    matches.Add(ctrl);
+                }
+
+                if (ctrl.HasChildren)
+                {
+                    matches.AddRange(FindControlsByFields(ctrl, fieldNames));
+                }
+            }
+            return matches;
+        }
+
+        private bool HasBackColor(Control c)
+        {
+            if (c.BackColor != Color.Empty)
+            {
+                return true;
+            }
+            else
+            {
+                if (c.BackColor == Color.Empty)
+                {
+                    return false;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        private bool HasBackColor2(Control c)
+        {
+            return c is System.Windows.Forms.ComboBox || c is ListBox || c is System.Windows.Forms.TextBox || c is System.Windows.Forms.Button || c is Label || c is DataGridView;
+        }
+
+        private Color colorShuf(int cs1)
+        {
+            return Color.FromName(collecChoice[cs1]);
+        }
+
+        private void colorFn4(List<Control> foundControls) // set custom color
+        {
+            try
+            {
+                if (collecChoice == null)
+                {
+                    collecChoice = colorCollec0;
+                }
+                if (foundControls == null)
+                {
+                    string[] fieldNames = panelCollection2;
+                    foundControls = FindControlsByFields(this, fieldNames);
+                }
+                int c4 = startInt;
+                collecNumFn();
+
+                foreach (Control ctrl in foundControls)
+                {
+                    if (ctrl.BackColor != Color.Empty)
+                    {
+                        if (HasBackColor(ctrl))
+                        {
+                            try
+                            {
+                                if (HasBackColor(ctrl))
+                                {
+                                    if (c4 == counterMax)
+                                    {
+                                        c4 = 0;
+                                    }
+                                    ctrl.BackColor = colorShuf(c4);
+                                    c4++;
+
+                                }
+                            }
+                            catch (System.NullReferenceException)
+                            {
+                                throw;
+                            }
+                        }
+                    }
+                }
+                if (startInt == counterMax - 1)
+                {
+                    startInt = 0;
+                }
+                startInt++;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private List<Control> svFn()
+        {
+            string[] fieldNames = panelCollection2;
+            List<Control> foundControls = FindControlsByFields(this, fieldNames);
+            return foundControls;
+        }
+
+        private void checkSet()
+        {
+            cond2 = ThemeHelper.stc;
+            if (cond2 == false)
+            {
+                setParams();
+            }
+        }
+
+        private void setParams()
+        {
+            // 1. => pcs // color/theme choice  | ThemeHelper.pcs : 0/1/2++ (RED/GOLD/RUBY...)
+            // 2. => if pfs == checked/true =>  | ThemeHelper.pfs : 0/1  (ON/OFF)
+            //      => fsp => flash_speed       | ThemeHelper.fsp : 0-10 (*100/250?)
+            // 3. => set_start_bool_dt | callFn | cond2 (bool)
+            //      => 
+            //      => setiMaxLength()
+            if (ThemeHelper.pcs == -1)
+            {
+                getColorFn2(0);
+            }
+
+            if (ThemeHelper.pcs == 0)
+            {
+                getColorFn2(0);
+            }
+            else
+            {
+                getColorFn2(ThemeHelper.pcs); // setsColorCollection (dropdown menu theme)
+            }
+
+            collecNumFn();
+
+            if (ThemeHelper.pfs == true)
+            {
+                counter2 = fspCT(); // X10? // setsFSP
+            }
+
+
+            // RE-use vars in colorFn/make new Fn with less cpu usage
+            ThemeHelper.stc = true;
+            cond2 = true; // + ThemeHelper.stc = true
+
+
+            startColorFn(); // check every second if ON/OFF, if TRUE ; colorFN/counter++...
+        }
+
+        private void startColorFn()
+        {
+            startColor = true;
+        }
+
+        private void collecNumFn()
+        {
+            counterMax = collecChoice.Length - 1;
+        }
+
+        private int fspCT()
+        {
+            return ThemeHelper.fsp;
+        }
+
         private void getTimeFn()
         {
-            times = cts;
-            //timem = ctm;
-            //timeh = cth;
-            if ((times / 60) == (timem + 1))
+            if ((times / 60) == 1)
             {
                 timem++;
                 times = 1;
-                cts = 1;
-                ctm = timem;
             }
 
-            if ((timem / 60) == (timeh + 1))
+            if ((timem / 60) == 1)
             {
                 timeh++;
                 timem = 1;
-                ctm = 1;
-                cth = timeh;
             }
 
-            if ((timeh / 24) == (timed + 1))
+            if ((timeh / 24) == 1)
             {
                 timed++;
                 timeh = 1;
-                cth = 1;
             }
-
         }
 
-        private void GuiTimer_Tick(object sender, EventArgs e) // testSeed - s (second)
+        public void getColorFn2(int v1)
         {
-            counter++;
-            cts++;
-            getTimeFn();
-            testNewSeed();
-            B_ATMSW.Text = $"RS:{counterSeed}CT:{counter}CTS:{cts}RT:{timed}:{timeh}:{timem}:{times}";
+            if (v1 == 0) { collecChoice = colorCollec0; }
+            if (v1 == 1) { collecChoice = colorCollec1; }
+            if (v1 == 2) { collecChoice = colorCollec2; }
+            if (v1 == 3) { collecChoice = colorCollec3; }
+            if (v1 == 4) { collecChoice = colorCollec4; }
+            if (v1 == 5) { collecChoice = colorCollec5; }
+            if (v1 == 6) { collecChoice = colorCollec6; }
+            if (v1 == 7) { collecChoice = colorCollec7; }
         }
 
-        private void GuiTimer_Tick2(object sender, EventArgs e) // flash fn ticker - ms (milliseconds)
-        {
-            colorFn();
-            if (counter2 == 120)
-            {
-                counter2 = 0;
-            }
-            counter2++;
-        }
-
-        private void colorFn()
-        {
-            EventSetting.BackColor = Color.FromName(colorCollec[0+counter2]);
-            Filter_ID.BackColor = Color.FromName(colorCollec[1+counter2]);
-            GB_RNGGEN7ID.BackColor = Color.FromName(colorCollec[2+counter2]);
-            Parents_Info.BackColor = Color.FromName(colorCollec[3+counter2]);
-            RNGPanel.BackColor = Color.FromName(colorCollec[4+counter2]);
-            Sta_Setting.BackColor = Color.FromName(colorCollec[5+counter2]);
-            Wild_Setting.BackColor = Color.FromName(colorCollec[6+counter2]);
-            DGV.BackgroundColor = Color.FromName(colorCollec[7+counter2]);
-            Filters.BackColor = Color.FromName(colorCollec[8+counter2]);
-            TP_StationaryRNG.BackColor = Color.FromName(colorCollec[9+counter2]);
-            DGV_ID.BackgroundColor = Color.FromName(colorCollec[10+counter2]);
-            RNGInfo.BackColor = Color.FromName(colorCollec[11+counter2]);
-            TP_EggRNG.BackColor = Color.FromName(colorCollec[12+counter2]);
-            TP_EventRNG.BackColor = Color.FromName(colorCollec[13+counter2]);
-            TP_WildRNG.BackColor = Color.FromName(colorCollec[14+counter2]);
-            B_ATMSW.BackColor = Color.FromName(colorCollec[15+counter2]);
-        }
-
-        private void StartCounter()
+        private void StartCounter() // sweep seed change every second
         {
             guiTimer = new System.Windows.Forms.Timer();
-            guiTimer.Interval = 25;
+            guiTimer.Interval = 1000;
             guiTimer.Tick += GuiTimer_Tick;
             guiTimer.Start();
         }
 
-        private void StartCounter2()
+        private void StartCounter2() // sweep forms colors every =>
         {
             guiTimer2 = new System.Windows.Forms.Timer();
-            guiTimer2.Interval = 100; // orig: 25
+            guiTimer2.Interval = counter2; // orig: 25
             guiTimer2.Tick += GuiTimer_Tick2;
             guiTimer2.Start();
+        }
+
+        private void StartCounter3() // check theme change every =>
+        {
+            guiTimer3 = new System.Windows.Forms.Timer();
+            guiTimer3.Interval = 1000;
+            guiTimer3.Tick += GuiTimer_Tick3;
+            guiTimer3.Start();
         }
 
         private void StopCounters()
         {
             guiTimer.Stop();
             guiTimer2.Stop();
+            guiTimer3.Stop();
         }
 
         private void CounterP1Seed()
@@ -354,7 +634,6 @@ namespace Pk3DSRNGTool
             try
             {
                 list0 = System.IO.File.ReadAllLines(seedPath);
-                cond1 = true;
 
                 oldSeedVar = list0[0].ToString();
                 toolTip1.SetToolTip(Seed, $"{oldSeedVar}");
@@ -362,7 +641,6 @@ namespace Pk3DSRNGTool
             catch (global::System.IO.IOException)
             {
                 counterTry++;
-                cond1 = false;
 
                 if (counterTry > 5)
                 {
@@ -378,7 +656,6 @@ namespace Pk3DSRNGTool
             try
             {
                 list1 = System.IO.File.ReadAllLines(seedPath);
-                cond1 = true;
 
                 newSeedVar = list1[0].ToString();
                 Seed.Text = $"{newSeedVar}";
@@ -386,7 +663,6 @@ namespace Pk3DSRNGTool
             catch (global::System.IO.IOException)
             {
                 counterTry++;
-                cond1 = false;
 
                 if (counterTry < 5)
                 {
@@ -414,6 +690,7 @@ namespace Pk3DSRNGTool
                         string list = list0[0].ToString();
                         oldSeedVar = list0[0].ToString();
                         Seed.Text = list;
+                        B_Calc.PerformClick();
                     }
                 }
             }
@@ -429,11 +706,11 @@ namespace Pk3DSRNGTool
             setNewSeed();
             if (oldSeedVar == newSeedVar)
             {
-                cond2 = true;
+                cond1 = true;
             }
             else
             {
-                cond2 = false;
+                cond1 = false;
             }
         }
 
@@ -441,7 +718,7 @@ namespace Pk3DSRNGTool
         {
             getSeedCHGON();
 
-            if (cond2 == false)
+            if (cond1 == false)
             {
                 setOldSeed();
                 setNewSeed();
@@ -456,11 +733,20 @@ namespace Pk3DSRNGTool
 
 
 
+        // ############# END REGION #########
+
+
         #endregion
 
         #region Form Loading
         private void MainForm_Load(object sender, EventArgs e)
         {
+            //svFn();
+            if (ThemeHelper.stc == false)
+            {
+                ThemeHelper.stc = true;
+            }
+            //collecChoice = colorCollec0;
             Updater.CheckUpdate();
             Type dgvtype = typeof(DataGridView);
             System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.SetProperty
@@ -2485,9 +2771,6 @@ namespace Pk3DSRNGTool
                 getSeedPath();
                 StartCounter();
                 StartCounter2();
-
-                //StartCounter3();
-                    // . _ > FLASHBUTTON();
             }
             else
             {
@@ -2502,5 +2785,25 @@ namespace Pk3DSRNGTool
             }
         }
         #endregion
+
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ThemeHelper.pcs = 0;
+            ThemeHelper.pfs = true;
+            ThemeHelper.fsp = 2500;
+            ThemeHelper.stc = false;
+            StartCounter2();
+            string[] targetFields = panelCollection2;
+            List<Control> foundControls = svFn();
+            colorFn4(foundControls);
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            StartCounter3();
+            new Subforms.ThemePicker().ShowDialog();
+        }
     }
 }

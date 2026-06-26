@@ -127,6 +127,7 @@
             M_KeyBV = new System.Windows.Forms.ToolStripMenuItem();
             M_MiscRNGTool = new System.Windows.Forms.ToolStripMenuItem();
             M_Option = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             M_Profile = new System.Windows.Forms.ToolStripMenuItem();
             M_Language = new System.Windows.Forms.ToolStripMenuItem();
             Lang = new System.Windows.Forms.ToolStripComboBox();
@@ -300,6 +301,7 @@
             L_Forme = new System.Windows.Forms.Label();
             L_Event_PID = new System.Windows.Forms.Label();
             TP_StationaryRNG = new System.Windows.Forms.TabPage();
+            richTextBox1 = new System.Windows.Forms.RichTextBox();
             RNGInfo = new System.Windows.Forms.GroupBox();
             LeapRangePanel = new System.Windows.Forms.Panel();
             label14 = new System.Windows.Forms.Label();
@@ -451,6 +453,7 @@
             Seed = new Pk3DSRNGTool.Controls.HexMaskedTextBox();
             toolTip1 = new System.Windows.Forms.ToolTip(components);
             B_ATMSW = new System.Windows.Forms.Button();
+            button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)TSV).BeginInit();
             ((System.ComponentModel.ISupportInitialize)DGV).BeginInit();
             DGVMS.SuspendLayout();
@@ -562,7 +565,7 @@
             // 
             Advanced.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             Advanced.AutoSize = true;
-            Advanced.Location = new System.Drawing.Point(1244, 17);
+            Advanced.Location = new System.Drawing.Point(1501, 17);
             Advanced.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             Advanced.Name = "Advanced";
             Advanced.Size = new System.Drawing.Size(75, 19);
@@ -575,7 +578,7 @@
             // 
             ShinyCharm.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             ShinyCharm.AutoSize = true;
-            ShinyCharm.Location = new System.Drawing.Point(1155, 17);
+            ShinyCharm.Location = new System.Drawing.Point(1412, 17);
             ShinyCharm.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             ShinyCharm.Name = "ShinyCharm";
             ShinyCharm.Size = new System.Drawing.Size(76, 19);
@@ -588,7 +591,7 @@
             // 
             L_TSV.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             L_TSV.AutoSize = true;
-            L_TSV.Location = new System.Drawing.Point(968, 20);
+            L_TSV.Location = new System.Drawing.Point(1225, 20);
             L_TSV.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             L_TSV.Name = "L_TSV";
             L_TSV.Size = new System.Drawing.Size(27, 15);
@@ -599,7 +602,7 @@
             // 
             L_Seed.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             L_Seed.AutoSize = true;
-            L_Seed.Location = new System.Drawing.Point(849, 20);
+            L_Seed.Location = new System.Drawing.Point(1106, 20);
             L_Seed.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             L_Seed.Name = "L_Seed";
             L_Seed.Size = new System.Drawing.Size(32, 15);
@@ -610,7 +613,7 @@
             // 
             TSV.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             TSV.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            TSV.Location = new System.Drawing.Point(1003, 14);
+            TSV.Location = new System.Drawing.Point(1260, 14);
             TSV.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             TSV.Maximum = new decimal(new int[] { 4095, 0, 0, 0 });
             TSV.Name = "TSV";
@@ -659,7 +662,7 @@
             DGV.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             DGV.RowTemplate.Height = 21;
             DGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            DGV.Size = new System.Drawing.Size(1305, 290);
+            DGV.Size = new System.Drawing.Size(1562, 290);
             DGV.TabIndex = 89;
             DGV.VirtualMode = true;
             DGV.CellMouseEnter += DGV_CellMouseEnter;
@@ -994,7 +997,7 @@
             Gameversion.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             Gameversion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             Gameversion.Items.AddRange(new object[] { "X", "Y", "OR", "AS", "Transporter", "Sun", "Moon", "Ultra Sun", "Ultra Moon" });
-            Gameversion.Location = new System.Drawing.Point(754, 15);
+            Gameversion.Location = new System.Drawing.Point(1011, 15);
             Gameversion.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             Gameversion.Name = "Gameversion";
             Gameversion.Size = new System.Drawing.Size(90, 23);
@@ -1005,7 +1008,7 @@
             // 
             L_GameVersion.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             L_GameVersion.AutoSize = true;
-            L_GameVersion.Location = new System.Drawing.Point(669, 20);
+            L_GameVersion.Location = new System.Drawing.Point(926, 20);
             L_GameVersion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             L_GameVersion.Name = "L_GameVersion";
             L_GameVersion.Size = new System.Drawing.Size(56, 15);
@@ -1028,7 +1031,7 @@
             DGV_ID.RowHeadersWidth = 18;
             DGV_ID.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             DGV_ID.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            DGV_ID.Size = new System.Drawing.Size(1305, 290);
+            DGV_ID.Size = new System.Drawing.Size(1562, 290);
             DGV_ID.TabIndex = 92;
             DGV_ID.VirtualMode = true;
             DGV_ID.DragDrop += DragDropWC;
@@ -1195,15 +1198,22 @@
             // 
             // M_Option
             // 
-            M_Option.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { M_Profile, M_Language, toolStripSeparator3, M_Exit });
+            M_Option.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripMenuItem1, M_Profile, M_Language, toolStripSeparator3, M_Exit });
             M_Option.Name = "M_Option";
             M_Option.Size = new System.Drawing.Size(61, 20);
             M_Option.Text = "Options";
             // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new System.Drawing.Size(161, 22);
+            toolStripMenuItem1.Text = "Theme Manager";
+            toolStripMenuItem1.Click += toolStripMenuItem1_Click;
+            // 
             // M_Profile
             // 
             M_Profile.Name = "M_Profile";
-            M_Profile.Size = new System.Drawing.Size(158, 22);
+            M_Profile.Size = new System.Drawing.Size(161, 22);
             M_Profile.Text = "Profile Manager";
             M_Profile.Click += M_ProfileManager_Click;
             // 
@@ -1211,7 +1221,7 @@
             // 
             M_Language.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { Lang });
             M_Language.Name = "M_Language";
-            M_Language.Size = new System.Drawing.Size(158, 22);
+            M_Language.Size = new System.Drawing.Size(161, 22);
             M_Language.Text = "Language";
             // 
             // Lang
@@ -1225,12 +1235,12 @@
             // toolStripSeparator3
             // 
             toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new System.Drawing.Size(155, 6);
+            toolStripSeparator3.Size = new System.Drawing.Size(158, 6);
             // 
             // M_Exit
             // 
             M_Exit.Name = "M_Exit";
-            M_Exit.Size = new System.Drawing.Size(158, 22);
+            M_Exit.Size = new System.Drawing.Size(161, 22);
             M_Exit.Text = "Exit";
             M_Exit.Click += M_Exit_Click;
             // 
@@ -1244,7 +1254,7 @@
             TP_IDRNG.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             TP_IDRNG.Name = "TP_IDRNG";
             TP_IDRNG.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            TP_IDRNG.Size = new System.Drawing.Size(1305, 620);
+            TP_IDRNG.Size = new System.Drawing.Size(1562, 620);
             TP_IDRNG.TabIndex = 4;
             TP_IDRNG.Text = "ID乱数";
             // 
@@ -1565,7 +1575,7 @@
             TP_EggRNG.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             TP_EggRNG.Name = "TP_EggRNG";
             TP_EggRNG.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            TP_EggRNG.Size = new System.Drawing.Size(1305, 620);
+            TP_EggRNG.Size = new System.Drawing.Size(1562, 620);
             TP_EggRNG.TabIndex = 3;
             TP_EggRNG.Text = "孵化乱数";
             // 
@@ -2265,7 +2275,7 @@
             TP_WildRNG.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             TP_WildRNG.Name = "TP_WildRNG";
             TP_WildRNG.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            TP_WildRNG.Size = new System.Drawing.Size(1305, 620);
+            TP_WildRNG.Size = new System.Drawing.Size(1562, 620);
             TP_WildRNG.TabIndex = 2;
             TP_WildRNG.Text = "野生乱数";
             // 
@@ -2820,7 +2830,7 @@
             TP_EventRNG.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             TP_EventRNG.Name = "TP_EventRNG";
             TP_EventRNG.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            TP_EventRNG.Size = new System.Drawing.Size(1305, 620);
+            TP_EventRNG.Size = new System.Drawing.Size(1562, 620);
             TP_EventRNG.TabIndex = 1;
             TP_EventRNG.Text = "配信乱数";
             // 
@@ -3326,6 +3336,7 @@
             // TP_StationaryRNG
             // 
             TP_StationaryRNG.BackColor = System.Drawing.Color.Turquoise;
+            TP_StationaryRNG.Controls.Add(richTextBox1);
             TP_StationaryRNG.Controls.Add(RNGInfo);
             TP_StationaryRNG.Controls.Add(Sta_Setting);
             TP_StationaryRNG.Controls.Add(Filters);
@@ -3333,9 +3344,18 @@
             TP_StationaryRNG.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             TP_StationaryRNG.Name = "TP_StationaryRNG";
             TP_StationaryRNG.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            TP_StationaryRNG.Size = new System.Drawing.Size(1305, 620);
+            TP_StationaryRNG.Size = new System.Drawing.Size(1562, 620);
             TP_StationaryRNG.TabIndex = 0;
             TP_StationaryRNG.Text = "定点乱数";
+            // 
+            // richTextBox1
+            // 
+            richTextBox1.Location = new System.Drawing.Point(1267, 31);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.Size = new System.Drawing.Size(278, 272);
+            richTextBox1.TabIndex = 92;
+            richTextBox1.Text = "";
+            richTextBox1.WordWrap = false;
             // 
             // RNGInfo
             // 
@@ -5041,7 +5061,7 @@
             RNGMethod.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             RNGMethod.Name = "RNGMethod";
             RNGMethod.SelectedIndex = 0;
-            RNGMethod.Size = new System.Drawing.Size(1313, 648);
+            RNGMethod.Size = new System.Drawing.Size(1570, 648);
             RNGMethod.TabIndex = 5;
             RNGMethod.SelectedIndexChanged += RNGMethod_Changed;
             RNGMethod.DragDrop += DragDropWC;
@@ -5052,7 +5072,7 @@
             CB_Profile.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             CB_Profile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             CB_Profile.Items.AddRange(new object[] { "X", "Y", "OR", "AS", "Transporter", "Sun", "Moon", "Ultra Sun", "Ultra Moon" });
-            CB_Profile.Location = new System.Drawing.Point(527, 15);
+            CB_Profile.Location = new System.Drawing.Point(784, 15);
             CB_Profile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             CB_Profile.Name = "CB_Profile";
             CB_Profile.Size = new System.Drawing.Size(101, 23);
@@ -5062,7 +5082,7 @@
             // L_Profile
             // 
             L_Profile.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            L_Profile.Location = new System.Drawing.Point(445, 18);
+            L_Profile.Location = new System.Drawing.Point(702, 18);
             L_Profile.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             L_Profile.Name = "L_Profile";
             L_Profile.Size = new System.Drawing.Size(75, 17);
@@ -5073,7 +5093,7 @@
             // B_AddProfile
             // 
             B_AddProfile.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            B_AddProfile.Location = new System.Drawing.Point(639, 15);
+            B_AddProfile.Location = new System.Drawing.Point(896, 15);
             B_AddProfile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             B_AddProfile.Name = "B_AddProfile";
             B_AddProfile.Size = new System.Drawing.Size(23, 24);
@@ -5086,7 +5106,7 @@
             // 
             L_TRV.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             L_TRV.AutoSize = true;
-            L_TRV.Location = new System.Drawing.Point(1073, 20);
+            L_TRV.Location = new System.Drawing.Point(1330, 20);
             L_TRV.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             L_TRV.Name = "L_TRV";
             L_TRV.Size = new System.Drawing.Size(28, 15);
@@ -5097,7 +5117,7 @@
             // 
             TRV.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             TRV.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            TRV.Location = new System.Drawing.Point(1110, 14);
+            TRV.Location = new System.Drawing.Point(1367, 14);
             TRV.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             TRV.Mask = "A";
             TRV.Name = "TRV";
@@ -5112,7 +5132,7 @@
             // 
             Seed.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             Seed.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            Seed.Location = new System.Drawing.Point(886, 14);
+            Seed.Location = new System.Drawing.Point(1143, 14);
             Seed.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             Seed.Mask = "AAAAAAAA";
             Seed.Name = "Seed";
@@ -5135,12 +5155,23 @@
             B_ATMSW.UseVisualStyleBackColor = false;
             B_ATMSW.Click += B_ATMSW_Click;
             // 
+            // button1
+            // 
+            button1.Location = new System.Drawing.Point(464, 9);
+            button1.Name = "button1";
+            button1.Size = new System.Drawing.Size(75, 23);
+            button1.TabIndex = 93;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.RoyalBlue;
-            ClientSize = new System.Drawing.Size(1341, 703);
+            ClientSize = new System.Drawing.Size(1598, 703);
+            Controls.Add(button1);
             Controls.Add(B_ATMSW);
             Controls.Add(TRV);
             Controls.Add(L_TRV);
@@ -5695,6 +5726,9 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button B_ATMSW;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }
 
