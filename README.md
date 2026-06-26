@@ -1,5 +1,8 @@
-# 3DS RNG Tool [![Build status](https://github.com/wwwwwwzx/3DSRNGTool/actions/workflows/ci.yml/badge.svg)](https://github.com/wwwwwwzx/3DSRNGTool/actions/workflows/ci.yml)
+# 3DS RNG Tool RGB Edit V3, by tester1010101 [![Build status](https://github.com/wwwwwwzx/3DSRNGTool/actions/workflows/ci.yml/badge.svg)](https://github.com/wwwwwwzx/3DSRNGTool/actions/workflows/ci.yml)
 This is an RNG Tool for main 3DS Pokemon games. Some parts should work with [PokeCalcNTR](https://gbatemp.net/threads/pokecalcntr-for-gen-6-the-rng-tool-suite-for-the-3ds.473221/) using NTR-CFW.
+
+<img width="1583" height="704" alt="pr1" src="https://github.com/tester1010101/3DSRNGTool/blob/master/2DSRGB.gif?raw=true" />
+Created by https://github.com/wwwwwwzx/3DSRNGTool
 
 This tool is a complete rewrite based off my SMEncounterRNGTool with largely improved performance and the following features:
 - Gen6 RNG. including stationary Pokemon, Mystery Gift Pokemon, wild Pokemon(75%), Eggs and ID.
